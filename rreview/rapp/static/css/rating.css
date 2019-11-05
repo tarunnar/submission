@@ -1,0 +1,24 @@
+.checked {
+    color: orange;
+}
+span{
+font-size:40px;
+cursor:pointer;
+}
+#review_form_container{
+   width:400px;
+}
+#comment{
+margin-top:5px;
+width:400px;
+}
+span{
+font-size:30px;
+cursor:pointer;
+}
+#review_submit{
+margin-top:10px;
+margin-left:5px;"
+.table_td {
+color:#1A99C5;
+}

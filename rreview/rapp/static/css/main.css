@@ -1,0 +1,47 @@
+
+.input_box  {
+display:inline;
+}
+
+.form-container {
+position: relative;
+left:200px;
+}
+select{
+ background: #00b386;
+}
+.select-tag{
+width: 130px;
+height: 30px;
+
+border-radius: 5px;
+}
+.dropdown-content {
+background-color: #ffff;
+  min-width: 160px;
+  display:inline;
+  font-size: 14px;
+}
+option:hover{
+background-color: red;
+}
+button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+#button_search {
+    width:60px;
+    height: 30px;
+    border-radius: 5px;
+    position:relative;
+    left:570px;
+    background-color:#00b386;
+    color:black;padding:0.3em;
+}

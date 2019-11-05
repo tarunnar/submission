@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<!-- Font Awesome Icon Library -->
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="../../static/images/favicon.ico">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <!--  <link rel="stylesheet" href="../../static/css/login.css">-->
+    <script src="../../static/js/dynamic.js"></script>
+    <script src="../../static/js/login.js"></script>
+  <link rel="stylesheet"  href="../../static/css/rating.css">
+  <link rel="shortcut icon" href="../../static/images/favicon.ico">
+  <script src="../../static/js/getcookie.js"></script>
+</head>
+<body>
+
+    <div id="restaurant_details" class="col-sm-8">
+        <div><p><a class="message" style="color:red;font-size:200%;" id="restaurant_name" target="_blank"></a></p></div>
+        <div><img id="restaurant_image" style="width:400px;height:300px;"> </div>
+        <div>
+        <table>
+            <tr><td>Location</td> <td id="restaurant_location"></td></tr>
+            <tr><td>Url</td> <td id="url"></td></tr>
+            <tr><td>Menu Url</td> <td id="menu_url"></td>
+            <tr><td>Phone Nos</td> <td id="phone"> </td>
+            <tr><td>Cuisines</td> <td id="cuisines"></td>
+            <tr><td>Timings</td> <td id="timings"></td></tr>
+            <tr><td>Average Cost for two(Rs)</td> <td id="avg_cost"></td></tr>
+        </table>
+        <div id="restaurant_sp_details"></div>
+        </div>
+        <script src="../../static/js/show_reviews.js"></script>
+    </div>
+    <div id="right_half" class="col-sm-3">
+    <a  href="" class="logout_link" style="margin-left:200px;font-size:200%;" onclick="dologout();">Logout</a>
+
+    <div id= "review_form_container">
+        <p>Add Review</p>
+        <span  onmouseover="starmark(this)" onclick="starmark(this)" id="1one" class="fa fa-star"></span>
+        <span onmouseover="starmark(this)" onclick="starmark(this)" id="2one"  class="fa fa-star "></span>
+        <span onmouseover="starmark(this)" onclick="starmark(this)" id="3one"  class="fa fa-star "></span>
+        <span onmouseover="starmark(this)" onclick="starmark(this)" id="4one"  class="fa fa-star"></span>
+        <span onmouseover="starmark(this)" onclick="starmark(this)" id="5one"   class="fa fa-star"></span>
+        <br/>
+        <textarea   class="form-control" rows="3" id="comment" placeholder="Enter your review"></textarea>
+        <button  id="review_submit" onclick="result()" type="button"  class="btn btn-lg btn-success">Submit</button>
+        <p id="review_status"></p>
+    </div>
+    <div id="div_review">
+    </div>
+    </div>
+    <script>
+        let reviews = {{ reviews_json_string | safe }};
+        let reviews_data=reviews.reviews;
+        let avg_rating_val=null;
+        if (reviews.avg_rating!=null){
+            avg_rating_val=reviews.avg_rating.toFixed(1)
+        }
+        else{
+            avg_rating_val=0;
+        }
+        let inner_data = "<h3 id=avg_rating>"+"Average Rating:"+avg_rating_val+"</h3>"+"<div class='table-responsive' style='width:400px;'><table class='table table-striped table-responsive-md btn-table' id='reviews_table'><tr><th>User</th> <th>Order id</th> <th>Review</th><th>Rating</th></tr>";
+        for(let idx=0; idx < reviews_data.length; idx+=1){
+            inner_data+="<tr>";
+            inner_data+="<td class=table_td>"+ reviews_data[idx].user_id +"</td>";
+            inner_data+="<td class=table_td>"+ reviews_data[idx].order_id+"</td>";
+            inner_data+="<td class=table_td>"+ "<div style='overflow:auto;'><p>" + reviews_data[idx].rating_text + "</p></div>" +"</td>";
+            inner_data+="<td class=table_td>"+ reviews_data[idx].rating_value +"</td>";
+            inner_data+="</tr>";
+        }
+        inner_data += "</table></div>";
+        document.getElementById("div_review").innerHTML = inner_data;
+    </script>
+</body>
+</html>
